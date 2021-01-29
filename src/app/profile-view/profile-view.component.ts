@@ -19,13 +19,15 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class ProfileViewComponent implements OnInit {
   constructor(
 
-
     public fetchApiData: FetchApiDataService,
     public MatIconModule: MatIconModule,
     public dialogRef: MatDialogRef<ProfileViewComponent>,
     public snackBar: MatSnackBar,
     public MatsnackBar: MatSnackBarModule,
     @Inject(MAT_DIALOG_DATA)
+    /**
+     * here we take data and make user able to fill their information.
+     */
     public data: {
       Username: string;
       Password: string;

@@ -33,6 +33,9 @@ constructor(
     ngOnInit(): void {
 }
 
+/**
+ * fetching the data from login and then we navigate with routher to movies
+ */
 userLogin(): void {
   this.fetchApiData.userLogin(this.userData).subscribe(() => {
       console.log(this.userData);

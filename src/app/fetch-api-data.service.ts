@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { tokenize } from '@angular/compiler/src/ml_parser/lexer';
 import { stringify } from '@angular/compiler/src/util';
 
+//** Api source where we gather our data collections */
 const apiUrl = 'https://myflixjw.herokuapp.com/';
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,8 @@ export class FetchApiDataService {
   constructor(http: HttpClient) {
     this.http = http;
   }
- // Making the api call for the user registration endpoint
+  
+//**  Making the api call for the user registration endpoint */
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
     return this.http.post(apiUrl + 'users', userDetails).pipe(
@@ -28,23 +30,28 @@ export class FetchApiDataService {
     );
   }
 
-  userLogin(userDetails: any) {
-    
-    return this.http.post(apiUrl + 'login', userDetails, {headers: new HttpHeaders(
-      {
-        Authorization: 'Bearer '})})
-        .pipe(map(function (user: any) {
-            // login successful if there's a jwt token in the response
-            if (user) {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('token', (user.token));
-              localStorage.setItem('username', (user.user.Username));
-            }
-
-            return user;
-          }));
+/**
+ * 
+ * @param userDetails is showing the users data login, username and password
+ */
+userLogin(userDetails: any) {
+  return this.http.post(apiUrl + 'login', userDetails, {headers: new HttpHeaders(
+  {
+    Authorization: 'Bearer '})})
+    .pipe(map(function (user: any) {
+        // login successful if there's a jwt token in the response
+        if (user) {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('token', (user.token));
+          localStorage.setItem('username', (user.user.Username));
+        }
+        return user;
+      }));
 }
-
+/**
+ * 
+ * @param error message will show if there is any errors 
+ */
 private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);
@@ -56,7 +63,10 @@ private handleError(error: HttpErrorResponse): any {
     return throwError(
     'Something bad happened; please try again later.');
 }
-  
+
+ /**
+  * this will get the api collection from the movies
+  */ 
 getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {headers: new HttpHeaders(
@@ -68,6 +78,9 @@ getAllMovies(): Observable<any> {
   );
 }
 
+/**
+ * this will get the api collection for users. 
+ */
 getUser() {
   let token = localStorage.getItem('token');
   let user =  localStorage.getItem('username');
@@ -80,6 +93,10 @@ getUser() {
     )
   }
 
+/**
+ * 
+ * @param movieID this takes the movieID and post it to the user collection
+ */
 addFavoriteMovie(movieID: any) {
   let token = localStorage.getItem('token');
   let user = localStorage.getItem('username');
