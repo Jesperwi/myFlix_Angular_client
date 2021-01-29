@@ -1,0 +1,23 @@
+
+<div mat-dialog-content>
+
+    <p *ngIf="data.Username" class="mat-body-1">
+      Name: {{ data?.Username }}
+    </p>
+    <p *ngIf="data.Password" class="mat-body-1">
+      Password: {{ data?.Password }}
+    </p>
+    <p *ngIf="data.Email" class="mat-body-1">
+      Email: {{ data?.Email }}
+    </p>
+    <p *ngIf="data.Birthday" class="mat-body-1">
+      Birthday: {{ data?.Birthday }}
+    </p>
+    <p *ngIf="data.favoriteMovies" class="mat-body-1">
+      Favorite Movies: {{ data?.favoriteMovies }}
+    </p>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Back</button>
+  </div>
+  

@@ -1,0 +1,24 @@
+  
+<div class="cardContent" >
+<div mat-dialog-content>
+  <p *ngIf="data.title" class="mat-body-1">{{ data?.title }}</p>
+  <img src={{data.imagePath}} alt= {{data.title}} />
+  <p *ngIf="data.genreName" class="mat-body-1">Genre: {{ data?.genreName }}</p>
+  <p *ngIf="data.genreDesc" class="mat-body-1">
+    Description: {{ data?.genreDesc }}
+  </p>
+  <p *ngIf="data.directorName" class="mat-body-1">
+    Name: {{ data?.directorName }}
+  </p>
+  <p *ngIf="data.directorBio" class="mat-body-1">
+    Bio: {{ data?.directorBio }}
+  </p>
+  <p *ngIf="data.directorBirth" class="mat-body-1">
+    Birth: {{ data?.directorBirth }}
+  </p>
+  <p *ngIf="data.movDesc" class="mat-body-1">Description: {{ data?.movDesc }}</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Back</button>
+</div>
+</div>
