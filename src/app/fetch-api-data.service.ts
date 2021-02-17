@@ -84,7 +84,7 @@ getAllMovies(): Observable<any> {
 getUser() {
   let token = localStorage.getItem('token');
   let user =  localStorage.getItem('username');
-  return this.http.get(`http://myflixjw.herokuapp.com/users/${user}`, {headers: new HttpHeaders(
+  return this.http.get(`https://myflixjw.herokuapp.com/users/${user}`, {headers: new HttpHeaders(
     {
       Authorization: 'Bearer ' + token,
     })}).pipe(
